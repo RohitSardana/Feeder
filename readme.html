@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>Feeder Exercise – </title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="samples/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="samples/readme.css" type="text/css" />
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#feeder-exercise">Feeder exercise</a><ul>
+<li><a href="#submission">Submission</a></li>
+<li><a href="#tasks">Tasks</a><ul>
+<li><a href="#task-1-improve-application-responsiveness-and-reliability">Task 1: Improve application responsiveness and reliability</a></li>
+<li><a href="#task-2-add-post-details-screen">Task 2: Add post Details screen</a></li>
+</ul></li>
+<li><a href="#provided-components">Provided components</a><ul>
+<li><a href="#existing-screens">Existing screens</a></li>
+<li><a href="#database">Database</a></li>
+<li><a href="#application-shell-and-navigator">Application shell and navigator</a></li>
+<li><a href="#application-styles">Application styles</a></li>
+<li><a href="#tests">Tests</a></li>
+</ul></li>
+<li><a href="#tips">Tips</a></li>
+</ul></li>
+</ul>
+</div>
+<h1 id="feeder-exercise">Feeder exercise</h1>
+<p>The Feeder application displays posts and associated comments retrieved from a database component. It is currently incomplete: it has a startup screen and a main screen that displays a list of post titles, but does not show any detail about the posts and post comments.</p>
+<p>The aim of this exercise is to complete the application by completing the <a href="#tasks">Tasks</a> listed below.</p>
+<p>See <a href="#provided-components">Provided components</a> for some information that may assist with these tasks.</p>
+<h2 id="submission">Submission</h2>
+<p>Your code should be available on a GIT repository of your choosing (<a href="https://bitbucket.org">bitbucket</a>, <a href="https://github.com/">GitHub</a>, etc). Once you are satisfied with your code, send us an invitation to access the code so we can take a look.</p>
+<p>Make sure your final submission includes all the code and libraries required to compile and run the application and tests. Make sure all tests pass.</p>
+<h2 id="tasks">Tasks</h2>
+<p>Here are the tasks required to complete the application. It is advisable to commit to your git repository after each task (or even multiple times per task). You are welcome to change any of the provided code to help you achieve these tasks.</p>
+<h3 id="task-1-improve-application-responsiveness-and-reliability">Task 1: Improve application responsiveness and reliability</h3>
+<p>The <a href="#database">provided <code>Database</code> component</a> responds slowly and sometimes times-out. This gives a poor experience to users, and also makes the application difficult to test. The source code for this component is not included, so you will need to write your own wrapper around the database calls and adapt the application code to use that wrapper in order to implement the following features:</p>
+<ul>
+<li>the application should show an error message if the database times-out. An <code>ErrorView.xaml</code> screen and related navigation code is already provided.</li>
+<li>the <code>NavigatorFixture.GoingToMain</code> test should be implemented and pass.</li>
+<li>the application should show a loading indicator while waiting for the database response. One possible design is shown below, but feel free to use a different design:</li>
+</ul>
+<div class="figure">
+<img src="./samples/5.LoadingIndicator.png" alt="Proposed loading screen design" width="300" />
+<p class="caption">Proposed loading screen design</p>
+</div>
+<p>The application should stay responsive when loading (for example: can be resized and still redraw).</p>
+<h3 id="task-2-add-post-details-screen">Task 2: Add post Details screen</h3>
+<ul>
+<li>When the user selects a post on the Main screen, the application should navigate to a new screen that displays post details. A sample design is show below. You do not have to match this exactly, but your implementation should include all the information from the sample: post title and body from <code>Post</code> object, author name and image from <code>User</code> object, comments and commenter names from <code>Comment</code> object (this can all be retrieved from the <code>Database</code> component).</li>
+<li>The user should be able to go back to the Main screen. If the database returns new posts since the last visit to this screen then these should be included on the Main screen.</li>
+<li>Provide automated tests for navigating to and from this screen, as well as for the information to be displayed on the screen when it loads (this can be via an associated view model, you do not need automated tests for the XAML).</li>
+</ul>
+<div class="figure">
+<img src="./samples/3.PostDetails.png" alt="Proposed detail screen design" width="300" />
+<p class="caption">Proposed detail screen design</p>
+</div>
+<h2 id="provided-components">Provided components</h2>
+<p>The following components are provided as a starting point for this exercise. It is fine to change any of the included code, although you are stuck having to use the provided <code>Database</code> component, and if you invalidate the provided tests you should reimplement them to maintain the same test coverage.</p>
+<h3 id="existing-screens">Existing screens</h3>
+<p><img src="./samples/0.Intro.png" alt="Intro screen" style="width:25.0%" />  <img src="./samples/2.FilteredPosts.png" alt="Main screen" style="width:25.0%" />  <img src="./samples/4.ErrorMessage.png" alt="Error screen" style="width:25.0%" /></p>
+<h3 id="database">Database</h3>
+<p>The provided <code>Database</code> component simulates an unreliable connection to a data source. It has the following properties:</p>
+<ul>
+<li>It uses slow, blocking calls and will sometimes timeout and throw an exception.</li>
+<li>It will respond with different data each time the application is loaded.</li>
+<li>Repeated calls to <code>GetPostSummaries</code> and <code>GetComments</code> can return new posts and comments, to simulate the database receiving new information while the application is running.</li>
+<li>No data will ever be deleted from the database while the application is running.</li>
+</ul>
+<p>You cannot change this component, but you can wrap it with a new class from within the application code.</p>
+<p>Two connection strings are provided to aid with manually testing the application, one for Default reliability, the other to simulate an even less reliable connection (useful for checking error handling).</p>
+<h3 id="application-shell-and-navigator">Application shell and navigator</h3>
+<p>The basic shell of the application is provided. An <code>AppShellViewModel</code> is bound to the application window on startup and is used to host screens. A screen consists of a view model class and a XAML view. These two pieces are linked together for each screen using data templates defined in <code>ViewMappings.xaml</code>. The introduction screen and main screen are provided as examples of how views integrate with the shell. The navigator component is currently used to transition between views (although you can change this if you want to).</p>
+<h3 id="application-styles">Application styles</h3>
+<p>The solution includes a file containing all the XAML styles currently used on the views. You can add, edit, or ignore styles as needed.</p>
+<h3 id="tests">Tests</h3>
+<p>Some sample tests are provided using MSTest and the <a href="http://nsubstitute.github.io/">NSubstitute</a> mocking library. (You can switch to other testing frameworks if you prefer, but make sure you keep the existing test coverage.) A few are marked <code>Inconclusive</code> as they can not be implemented until some steps in the exercise have been completed.</p>
+<h2 id="tips">Tips</h2>
+<ul>
+<li>Provide meaningful commit messages to help us follow your decision-making process. You can also document some of the decisions you made within code comments.</li>
+<li>Follow the current code conventions.</li>
+<li>Take care to provide helpful member names and/or comments.</li>
+<li>If you spot duplication make sure you extract it into a common method or a new class. (Or provide a comment explaining why you left it in.)</li>
+<li>If you don't feel a test is necessary for a particular piece of code, it is a good idea to include a brief comment as to why you are not testing that class or member.</li>
+</ul>
+</body>
+</html>

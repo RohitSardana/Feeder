@@ -1,0 +1,29 @@
+/* figure style based on https://www.w3.org/Style/Examples/007/figures.en.html */
+
+div.figure {
+  width: 30%;
+  display: block;
+  text-align: center;
+  font-style: italic;
+  font-size: smaller;
+  text-indent: 0;
+  border: thin silver solid;
+  margin: 1.0em;
+  padding: 0.5em; 
+}
+
+h1, h2, h3, h4 {
+  margin-top: 1em;
+}
+
+#TOC {
+  float: right;
+  border: thin silver solid;
+  margin: 0.5em;
+  padding: 0.5em; 
+  width: 40%;
+}
+
+body {
+  margin: 0.5em;
+}

@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="Org.Feeder.App.Views.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:types="clr-namespace:Org.Feeder.App.Models"
+             xmlns:sampleData="clr-namespace:Org.Feeder.App.ViewModels.SampleData"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance sampleData:MainViewModelSampleData, IsDesignTimeCreatable=True}">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type types:PostSummary}">
+            <Grid>
+                <Grid Margin="0 4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Post.Border}" CornerRadius="6" Opacity="0.3"/>
+                    <TextBlock Grid.Column="0" Text="{Binding Title, Mode=OneTime}" Style="{StaticResource Text.Post.Header}" VerticalAlignment="Center" Margin="16 10 8 10" />
+                    <Path Grid.Column="1" Style="{StaticResource App.Icon.Next}" Margin="8 0 16 0" />
+                </Grid>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid Margin="0 20 0 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Choose your destiny." Style="{StaticResource Text.H1}" Margin="20 0 0 0" />
+
+        <Grid Grid.Row="1" Margin="30 20 30 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Style="{StaticResource Text.Body}" Text="Filter by post:" />
+            <TextBox x:Name="Filter" Grid.Column="1" Style="{StaticResource App.TextBox}" Text="" Margin="10 0 0 0" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="KeyUp">
+                        <i:InvokeCommandAction Command="{Binding FilterCommand, Mode=OneTime}" CommandParameter="{Binding ElementName=Filter, Path=Text, Mode=OneWay}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+        </Grid>
+        <ListView x:Name="PostList" Grid.Row="2" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MinWidth="400"
+                  ItemsSource="{Binding Posts, Mode=OneWay, IsAsync=True}" BorderThickness="0" Margin="0 16 0 0" HorizontalContentAlignment="Stretch">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="BorderThickness" Value="0" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding SelectCommand, Mode=OneTime}" CommandParameter="{Binding ElementName=PostList, Path=SelectedItem, Mode=OneWay}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ListView>
+    </Grid>
+</UserControl>

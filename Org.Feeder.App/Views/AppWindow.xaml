@@ -1,0 +1,44 @@
+﻿<Window x:Class="Org.Feeder.App.Views.AppWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:Org.Feeder.App.ViewModels"
+        mc:Ignorable="d"
+        Title="Feeder - Great content on your desktop." 
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal"
+        WindowStyle="ToolWindow"
+        Height="700" MinHeight="500"
+        Width="480" MinWidth="440"
+        d:DataContext="{d:DesignInstance viewModels:AppShellViewModel}"
+        Background="{StaticResource App.Background.Brush}"
+        >
+    <Grid>
+
+        <!-- Views are hosted here. When a ViewModel is assigned to Content it will be mapped to a corresponding XAML view using a DataTemplate. -->
+        <ContentPresenter Content="{Binding Content, Mode=OneWay}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+
+        <!-- This border (and its content) host the loading indicator. It needs to be wired up to the view model and displayed when needed. -->
+        <Border x:Name="LoadingIndicator" Background="#99000000" Visibility="Hidden"> <!-- this border darkens the background -->
+            <Grid Height="100" Width="140" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Border Grid.RowSpan="2" Background="White" CornerRadius="4">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="20" Direction="0" RenderingBias="Performance" ShadowDepth="0" Opacity="0.6" />
+                    </Border.Effect>
+                </Border>
+                <!-- This is a spinner indicator, no animation at the moment. It would be nice to have it working though. -->
+                <Path x:Name="LoadingIcon" Grid.Row="0" Style="{StaticResource App.Icon.Loading}" Margin="8 8 8 0" RenderTransformOrigin="0.5 0.5">
+                    <Path.RenderTransform>
+                        <RotateTransform Angle="0" />
+                    </Path.RenderTransform>
+                </Path>
+                <TextBlock Grid.Row="1" Text="Loading..." Style="{StaticResource Text.Body}" HorizontalAlignment="Center" Margin="8 0 8 8" />
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
