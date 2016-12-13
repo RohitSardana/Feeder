@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.Feeder.App.Services;
+using System;
 
 namespace Org.Feeder.App.Framework
 {
@@ -6,6 +7,6 @@ namespace Org.Feeder.App.Framework
     {
         void GoToIntro();
         void GoToMain();
-        void ShowError(string title, string message, Action recoveryAction);
+        void ShowError(string title, string message, Action recoveryAction, string actionTitle);
     }
 }

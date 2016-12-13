@@ -1,20 +1,18 @@
 ﻿using System;
-using System.Linq;
 using Org.Feeder.App.ViewModels;
-using Org.Feeder.FeederDb;
-using PostSummary = Org.Feeder.App.Models.PostSummary;
+using Org.Feeder.App.Services;
 
 namespace Org.Feeder.App.Framework
 {
     public class Navigator : INavigator
     {
         private readonly IContentHostViewModel _appShell;
-        private readonly Database _database;
+        private readonly IDbService _dbService;
 
-        public Navigator(IContentHostViewModel appShell, Database database)
+        public Navigator(IContentHostViewModel appShell, IDbService dbService)
         {
             _appShell = appShell;
-            _database = database;
+            _dbService = dbService;
         }
 
         public void GoToIntro()
@@ -24,15 +22,12 @@ namespace Org.Feeder.App.Framework
 
         public void GoToMain()
         {
-            var posts = _database.GetPostSummaries()
-                            .Select(p => new PostSummary(p.Id, p.Title));
-
-            Display(new MainViewModel(posts));
+            Display(new MainViewModel(this, _dbService));
         }
 
-        public void ShowError(string title, string message, Action recoveryAction)
+        public void ShowError(string title, string message, Action recoveryAction, string actionTitle)
         {
-            Display(new ErrorViewModel(title, message, recoveryAction));
+            Display(new ErrorViewModel(title, message, recoveryAction, actionTitle));
         }
 
         private void Display<TViewModel>(TViewModel viewModel) where TViewModel : IViewModel

@@ -16,7 +16,7 @@
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="40 20">
             <TextBlock Style="{StaticResource Text.H1}" Text="{Binding Title, Mode=OneTime}" Foreground="White" />
             <TextBlock Style="{StaticResource Text.Body}" Text="{Binding Message, Mode=OneTime}" Margin="0 10 0 0" Foreground="White" />
-            <Button Content="Dismiss" Command="{Binding DismissCommand, Mode=OneTime}" Margin="0 30 0 0" Style="{StaticResource Error.Button}" />
+            <Button Content="{Binding ActionTitle, Mode=OneTime}" Command="{Binding ActionCommand, Mode=OneTime}" Margin="0 30 0 0" Style="{StaticResource Error.Button}" />
         </StackPanel>
     </Grid>
 </UserControl>

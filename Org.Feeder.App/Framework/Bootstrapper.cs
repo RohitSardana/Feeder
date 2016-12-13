@@ -1,4 +1,4 @@
-﻿using Org.Feeder.FeederDb;
+﻿using Org.Feeder.App.Services;
 
 namespace Org.Feeder.App.Framework
 {
@@ -8,7 +8,7 @@ namespace Org.Feeder.App.Framework
 
         private IWindow _mainWindow;
         private Navigator _navigator;
-        private Database _database;
+        private IDbService _dbService;
 
         public Bootstrapper(HostWindowFactory hostWindowFactory)
         {
@@ -17,9 +17,8 @@ namespace Org.Feeder.App.Framework
 
         public void Initialize(IContentHostViewModel appViewModel)
         {
-            _database = new Database(ConnectionStrings.Default);
-
-            _navigator = new Navigator(appViewModel, _database);
+            _dbService = new DbService();
+            _navigator = new Navigator(appViewModel, _dbService);
 
             _mainWindow = _hostWindowFactory.CreateHostWindow(appViewModel);
             _mainWindow.Show();

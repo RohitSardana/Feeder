@@ -67,20 +67,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CustomControls\LoadingWaitBlock.xaml.cs">
+      <DependentUpon>LoadingWaitBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\WaitBlock.xaml.cs">
+      <DependentUpon>WaitBlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Framework\Bootstrapper.cs" />
     <Compile Include="Framework\HostWindowFactory.cs" />
     <Compile Include="Framework\ConnectionStrings.cs" />
     <Compile Include="Framework\INavigator.cs" />
     <Compile Include="Framework\Navigator.cs" />
     <Compile Include="Framework\IWindow.cs" />
+    <Compile Include="Models\KnownResult.cs" />
     <Compile Include="Models\PostSummary.cs" />
-    <Compile Include="ViewModels\SampleData\ErrorViewModelSampleData.cs" />
-    <Compile Include="ViewModels\SampleData\MainViewModelSampleData.cs" />
+    <Compile Include="Services\DbService.cs" />
+    <Compile Include="Services\IDbService.cs" />
     <Compile Include="ViewModels\ErrorViewModel.cs" />
     <Compile Include="ViewModels\IntroViewModel.cs" />
     <Compile Include="Framework\ActionCommand.cs" />
     <Compile Include="Framework\IContentHostViewModel.cs" />
     <Compile Include="Framework\ParametrizedCommand.cs" />
+    <Compile Include="ViewModels\SampleData\ErrorViewModelSampleData.cs" />
     <Compile Include="Views\ErrorView.xaml.cs">
       <DependentUpon>ErrorView.xaml</DependentUpon>
     </Compile>
@@ -90,6 +98,14 @@
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
+    <Page Include="CustomControls\LoadingWaitBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\WaitBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\AppStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
