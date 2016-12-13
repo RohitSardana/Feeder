@@ -83,6 +83,18 @@ namespace Org.Feeder.Tests.Framework
              mainViewModel.Posts.Select(x => x.Title).ToArray());
         }
 
+        [TestMethod]
+        public void GoingToDetailedScreen()
+        {
+            var appShell = new AppShellViewModel();
+            IDbService _dbService = MockRepository.GenerateMock<IDbService>();
+            var navigator = new Navigator(appShell, _dbService);
+           
+            int postId = 1;//Any random post id.
+            navigator.GoToDetailedPost(postId);
+            Assert.IsInstanceOfType(appShell.Content, typeof(DetailedPostViewModel));
+        }
+
         private void MainViewModel_OnInitialized()
         {
             initializedSignal.Set();

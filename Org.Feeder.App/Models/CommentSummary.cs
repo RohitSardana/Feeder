@@ -22,46 +22,38 @@
 * -------------------------------------------------------------------------------------------------
 * 
 **************************************************************************************************/
-using Org.Feeder.App.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Org.Feeder.App.Services
+namespace Org.Feeder.App.Models
 {
-
     /// <summary>
-    /// Declars the method to fetch records from database.
+    /// Class represents the comment summary.
     /// </summary>
-    public interface IDbService
+    public class CommentSummary
     {
         /// <summary>
-        /// Gets post summaries from database.
+        /// Initializes the comment summary
         /// </summary>
-        /// <returns></returns>
-        KnownResult<IEnumerable<PostSummary>> GetPostSummaries();
+        /// <param name="commenterName"></param>
+        /// <param name="text"></param>
+        public CommentSummary(string commenterName, string text)
+        {
+            CommenterName = commenterName;
+            Text = text;
+        }
 
         /// <summary>
-        /// Gets comments by post id
+        /// Gets the Name of the commenter
         /// </summary>
-        /// <param name="postId"></param>
-        /// <returns></returns>
-        KnownResult<IList<CommentSummary>> GetCommentSummaryByPostId(int postId);
+        public string CommenterName { get; private set; }
 
         /// <summary>
-        /// Gets user by id
+        /// Gets the comment
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        KnownResult<FeederDb.User> GetUserById(int userId);
-
-        /// <summary>
-        /// Gets post by id
-        /// </summary>
-        /// <param name="postId"></param>
-        /// <returns></returns>
-        KnownResult<FeederDb.Post> GetPostById(int postId);
+        public string Text { get; private set; }
     }
 }

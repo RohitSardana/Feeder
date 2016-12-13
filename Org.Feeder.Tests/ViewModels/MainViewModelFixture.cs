@@ -7,6 +7,7 @@ using System.Threading;
 using Org.Feeder.App.Framework;
 using Org.Feeder.App.Services;
 using Rhino.Mocks;
+using System;
 
 namespace Org.Feeder.Tests.ViewModels
 {
@@ -51,11 +52,14 @@ namespace Org.Feeder.Tests.ViewModels
         [TestMethod]
         public void SelectingPost()
         {
+            _waitingEvent.WaitOne();
             var selectedPost = _posts.Skip(5).First();
 
             _viewModel.SelectCommand.Execute(selectedPost);
 
-            Assert.Inconclusive("BONUS: implement this test assert it navigates to the corresponding details screen.");
+            Assert.IsTrue(selectedPost.PostId == 6);
+            Assert.IsTrue(String.Compare(selectedPost.Title, "Post 6", false) == 0);
+            Assert.IsInstanceOfType(appShell.Content, typeof(DetailedPostViewModel));
         }
 
         private void _viewModel_OnInitialized()

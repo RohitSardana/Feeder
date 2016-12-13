@@ -29,6 +29,10 @@ namespace Org.Feeder.App.Framework
         {
             Display(new ErrorViewModel(title, message, recoveryAction, actionTitle));
         }
+        public void GoToDetailedPost(int postId)
+        {
+            Display(new DetailedPostViewModel(this, _dbService, postId));
+        }
 
         private void Display<TViewModel>(TViewModel viewModel) where TViewModel : IViewModel
         {

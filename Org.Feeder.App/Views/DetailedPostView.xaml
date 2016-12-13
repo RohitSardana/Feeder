@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="Org.Feeder.App.Views.DetailedPostView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Org.Feeder.App.Views"
+              xmlns:types="clr-namespace:Org.Feeder.App.Models"
+             xmlns:vm="clr-namespace:Org.Feeder.App.ViewModels"
+              xmlns:customControls="clr-namespace:Org.Feeder.App.CustomControls"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type types:CommentSummary}">
+            <Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="{Binding CommenterName, Mode=OneTime}" Style="{StaticResource Text.Comment.Author}" VerticalAlignment="Center" Margin="20 0 20 2" />
+                    <TextBlock Grid.Row="1" Text="{Binding Text, Mode=OneTime}" Style="{StaticResource Text.Comment.Body}" VerticalAlignment="Center" Margin="20 0 20 2" />
+                </Grid>
+            </Grid>
+        </DataTemplate>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
+    <Grid ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Margin="0 20 0 0" MinWidth="400" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*" />
+                <RowDefinition Height="0.5*" />
+                <RowDefinition Height="8*" />
+                <RowDefinition Height="1.0*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Title}" Style="{StaticResource Text.Post.Header}" Margin="20 0 0 0" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Row="1" Grid.Column="0"  Text="{Binding Author}" Style="{StaticResource Text.Post.Author}" Margin="20 0 20 0" HorizontalAlignment="Left" />
+            <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Source="{Binding ImageUrl}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,20,0"/>
+            <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Vertical" HorizontalAlignment="Stretch">
+                <TextBlock Text="{Binding Body}" Style="{StaticResource Text.Post.Body}" Margin="20 0 20 0" />
+                <TextBlock Text="{Binding CommentHeaderText}" Style="{StaticResource Text.H2}" Margin="20 0 20 0" />
+                <ListView  x:Name="Comments" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MinWidth="400"
+                  ItemsSource="{Binding Comments, Mode=OneWay, IsAsync=True}" BorderThickness="0" Margin="0 5 0 0" HorizontalContentAlignment="Stretch">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="BorderThickness" Value="2" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </StackPanel>
+            <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Go Back" Command="{Binding GoBackCommand, Mode=OneTime}" Margin="20 0 20 20" Style="{StaticResource App.Button}"/>
+        </Grid>
+
+        <Grid Grid.Row="0">
+            <Border Opacity="0.7" Visibility="{Binding Path=IsBusy, Converter={StaticResource BoolToVis}}"
+                VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Gray"  >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="4*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="4*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="1" Grid.Column="1" >
+                        <Border Background="Black" CornerRadius="4">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="20" Direction="0" Opacity="0.7" RenderingBias="Performance" ShadowDepth="0" />
+                            </Border.Effect>
+                        </Border>
+                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Black" Opacity="0.7" Margin="10 10">
+                            <TextBlock Style="{StaticResource Text.H1}" Text="Please wait" Foreground="White" HorizontalAlignment="Center" />
+                            <customControls:LoadingWaitBlock VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-20,0,0,0" Width="60" Height="60" />
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+
+</UserControl>

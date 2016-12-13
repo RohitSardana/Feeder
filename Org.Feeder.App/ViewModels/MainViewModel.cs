@@ -157,7 +157,14 @@ namespace Org.Feeder.App.ViewModels
 
         private void PostSelected(PostSummary postSummary)
         {
-            // TODO: navigate to post details screen
+            try
+            {
+                _navigator.GoToDetailedPost(postSummary.PostId);
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage(String.Format("Could not navigate to detailed post UI due to {0}", ex.Message), "Reload UI");
+            }
         }
 
         private void ShowErrorMessage(string errorMessage, string actionTitle)

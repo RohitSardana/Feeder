@@ -73,5 +73,125 @@ namespace Org.Feeder.App.Services
             }
             return postSummariesResult;
         }
+
+        /// <summary>
+        /// Gets the comment summary by post id
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        public KnownResult<IList<CommentSummary>> GetCommentSummaryByPostId(int postId)
+        {
+            KnownResult<IList<CommentSummary>> commentsResult = new KnownResult<IList<CommentSummary>>();
+            IList<CommentSummary> comments = new List<CommentSummary>();
+            String error = String.Empty;
+            try
+            {
+                comments = _database.GetComments(postId).Select(c => new CommentSummary(c.CommenterName, c.Text)).ToList();
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+            }
+            finally
+            {
+                commentsResult.Data = comments;
+                commentsResult.ErrorMessage = error;
+            }
+            return commentsResult;
+        }
+
+        /// <summary>
+        /// Gets the user by user id
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public KnownResult<FeederDb.User> GetUserById(int userId)
+        {
+            KnownResult<FeederDb.User> userResult = new KnownResult<FeederDb.User>();
+            FeederDb.User user = null;
+            String error = String.Empty;
+            try
+            {
+                if (_users == null)
+                {
+                    var usersResult = GetUsers();
+                    if (usersResult != null && !usersResult.HasError)
+                    {
+                        _users = usersResult.Data;
+                    }
+                    else
+                        _users = null;
+                }
+                if (_users != null)
+                {
+                    user = _users.Where(u => u.UserId == userId).FirstOrDefault();
+                    if (user == null)
+                    {
+                        error = String.Format("User with user id {0} does not exists.", userId);
+                    }
+                }
+                else
+                {
+                    error = "Oops! Could not fetch users from database.";
+                }
+            }
+            catch (Exception ex)
+            {
+                error = String.Format("Oops! Could not fetch users from database due to {0}", ex.Message);
+            }
+            finally
+            {
+                userResult.Data = user;
+                userResult.ErrorMessage = error;
+            }
+            return userResult;
+        }
+
+        /// <summary>
+        /// Gets the post by post id
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        public KnownResult<FeederDb.Post> GetPostById(int postId)
+        {
+            KnownResult<FeederDb.Post> postResult = new KnownResult<FeederDb.Post>();
+            FeederDb.Post post = null;
+            String error = String.Empty;
+            try
+            {
+                post = _database.GetPost(postId);
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+            }
+            finally
+            {
+                postResult.Data = post;
+                postResult.ErrorMessage = error;
+            }
+            return postResult;
+        }
+
+        private KnownResult<IEnumerable<FeederDb.User>> GetUsers()
+        {
+            KnownResult<IEnumerable<FeederDb.User>> userResult = new KnownResult<IEnumerable<FeederDb.User>>();
+            IEnumerable<FeederDb.User> users = null;
+            String error = String.Empty;
+            try
+            {
+                users = _database.GetUsers();
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+            }
+            finally
+            {
+                userResult.Data = users;
+                userResult.ErrorMessage = error;
+            }
+            return userResult;
+        }
     }
 }

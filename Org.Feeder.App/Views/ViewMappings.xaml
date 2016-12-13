@@ -15,4 +15,8 @@
         <views:ErrorView DataContext="{Binding}" />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type viewModels:DetailedPostViewModel}">
+        <views:DetailedPostView DataContext="{Binding}" />
+    </DataTemplate>
+
 </ResourceDictionary>

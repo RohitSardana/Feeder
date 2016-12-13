@@ -79,16 +79,21 @@
     <Compile Include="Framework\INavigator.cs" />
     <Compile Include="Framework\Navigator.cs" />
     <Compile Include="Framework\IWindow.cs" />
+    <Compile Include="Models\CommentSummary.cs" />
     <Compile Include="Models\KnownResult.cs" />
     <Compile Include="Models\PostSummary.cs" />
     <Compile Include="Services\DbService.cs" />
     <Compile Include="Services\IDbService.cs" />
+    <Compile Include="ViewModels\DetailedPostViewModel.cs" />
     <Compile Include="ViewModels\ErrorViewModel.cs" />
     <Compile Include="ViewModels\IntroViewModel.cs" />
     <Compile Include="Framework\ActionCommand.cs" />
     <Compile Include="Framework\IContentHostViewModel.cs" />
     <Compile Include="Framework\ParametrizedCommand.cs" />
     <Compile Include="ViewModels\SampleData\ErrorViewModelSampleData.cs" />
+    <Compile Include="Views\DetailedPostView.xaml.cs">
+      <DependentUpon>DetailedPostView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ErrorView.xaml.cs">
       <DependentUpon>ErrorView.xaml</DependentUpon>
     </Compile>
@@ -107,6 +112,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\AppStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DetailedPostView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
