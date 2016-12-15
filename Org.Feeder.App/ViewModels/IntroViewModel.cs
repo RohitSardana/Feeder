@@ -1,6 +1,4 @@
 ﻿using Org.Feeder.App.Framework;
-using Org.Feeder.App.Models;
-using Org.Feeder.App.Services;
 
 namespace Org.Feeder.App.ViewModels
 {

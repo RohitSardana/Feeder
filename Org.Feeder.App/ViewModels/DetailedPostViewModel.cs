@@ -24,15 +24,11 @@
 **************************************************************************************************/
 
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Org.Feeder.App.Framework;
 using Org.Feeder.App.Models;
 using System.Threading.Tasks;
-using FeederDb = Org.Feeder.FeederDb;
 using System;
-using System.Windows;
-using System.Windows.Threading;
 using Org.Feeder.App.Services;
 
 namespace Org.Feeder.App.ViewModels

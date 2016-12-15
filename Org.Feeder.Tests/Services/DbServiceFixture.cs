@@ -4,7 +4,6 @@ using Org.Feeder.App.Services;
 using Org.Feeder.App.Models;
 using System.Collections.Generic;
 using System.Linq;
-using FeederDb = Org.Feeder.FeederDb;
 
 namespace Org.Feeder.Tests.Services
 {
