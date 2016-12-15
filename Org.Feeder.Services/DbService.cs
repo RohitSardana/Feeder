@@ -22,14 +22,13 @@
 * -------------------------------------------------------------------------------------------------
 * 
 **************************************************************************************************/
-using Org.Feeder.App.Framework;
-using Org.Feeder.App.Models;
+using Org.Feeder.Models;
 using Org.Feeder.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Org.Feeder.App.Services
+namespace Org.Feeder.Services
 {
     /// <summary>
     /// A service to fetch the records from database.

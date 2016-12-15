@@ -22,54 +22,42 @@
 * -------------------------------------------------------------------------------------------------
 * 
 **************************************************************************************************/
-using System;
+using Org.Feeder.Models;
+using System.Collections.Generic;
 
-namespace Org.Feeder.App.Models
+namespace Org.Feeder.Services
 {
+
     /// <summary>
-    /// This class can be used to wrap the object to be returned from the method.
+    /// Declars the method to fetch records from database.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class KnownResult<T>
+    public interface IDbService
     {
-        #region Properties
-        private string _errorMessage;
-
+        /// <summary>
+        /// Gets post summaries from database.
+        /// </summary>
+        /// <returns></returns>
+        KnownResult<IEnumerable<PostSummary>> GetPostSummaries();
 
         /// <summary>
-        /// Gets or sets the data.
+        /// Gets comments by post id
         /// </summary>
-        /// <value>The data.</value>
-        public T Data
-        {
-            get; set;
-        }
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        KnownResult<IList<CommentSummary>> GetCommentSummaryByPostId(int postId);
 
         /// <summary>
-        /// Gets or sets the error.
+        /// Gets user by id
         /// </summary>
-        /// <value>The errors.</value>
-        public string ErrorMessage
-        {
-            get { return _errorMessage; }
-            set
-            {
-                if (!String.IsNullOrWhiteSpace(value))
-                {
-                    HasError = true;
-                }
-                _errorMessage = value;
-            }
-        }
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        KnownResult<FeederDb.User> GetUserById(int userId);
+
         /// <summary>
-        /// Gets whether object has error.
+        /// Gets post by id
         /// </summary>
-        public bool HasError
-        {
-            get; private set;
-
-        }
-
-        #endregion
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        KnownResult<FeederDb.Post> GetPostById(int postId);
     }
 }

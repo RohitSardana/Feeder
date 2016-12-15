@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Org.Feeder.App.Services;
-using Org.Feeder.App.Models;
+using Org.Feeder.Services;
+using Org.Feeder.Models;
 using System.Collections.Generic;
 using System.Linq;
 

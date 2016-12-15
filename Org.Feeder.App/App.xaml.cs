@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using Org.Feeder.App.Framework;
-using Org.Feeder.App.Models;
 using Org.Feeder.App.ViewModels;
 
 namespace Org.Feeder.App

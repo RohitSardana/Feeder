@@ -4,9 +4,9 @@ using NSubstitute;
 using Org.Feeder.App.Framework;
 using Org.Feeder.App.ViewModels;
 using System.Threading;
-using Org.Feeder.App.Models;
+using Org.Feeder.Models;
 using System.Collections.Generic;
-using Org.Feeder.App.Services;
+using Org.Feeder.Services;
 using System.Linq;
 using Rhino.Mocks;
 

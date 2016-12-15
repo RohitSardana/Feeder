@@ -26,10 +26,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Org.Feeder.App.Framework;
-using Org.Feeder.App.Models;
+using Org.Feeder.Models;
 using System.Threading.Tasks;
 using System;
-using Org.Feeder.App.Services;
+using Org.Feeder.Services;
 using Org.Feeder.Common;
 
 namespace Org.Feeder.App.ViewModels

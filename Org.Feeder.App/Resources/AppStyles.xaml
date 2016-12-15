@@ -3,6 +3,7 @@
                     >
 
     <ImageSource x:Key="App.Background.ImageSource">./Images/background.jpeg</ImageSource>
+    <ImageSource x:Key="App.Icon">./Images/Feeder.ico</ImageSource>
     <ImageBrush x:Key="App.Background.Brush" ImageSource="{StaticResource App.Background.ImageSource}" />
 
     <!-- Text Styles -->

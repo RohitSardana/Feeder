@@ -25,6 +25,9 @@
 
 namespace Org.Feeder.Common
 {
+    /// <summary>
+    /// A centeralized location for all the messages used throughout the application.
+    /// </summary>
     public class Messages
     {
         public const string MainView_CouldNotFilterThePost = "Could not filter posts due to";

@@ -23,7 +23,7 @@
 * 
 **************************************************************************************************/
 
-namespace Org.Feeder.App.Models
+namespace Org.Feeder.Models
 {
     /// <summary>
     /// Class represents the comment summary.

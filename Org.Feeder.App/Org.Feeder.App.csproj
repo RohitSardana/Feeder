@@ -35,13 +35,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Org.Feeder.FeederDb">
-      <HintPath>..\dependencies\Org.Feeder.FeederDb.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Expression.Interaction.3.0.40218.0\lib\net45\Microsoft.Expression.Interactions.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Org.Feeder.FeederDb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dependencies\Org.Feeder.FeederDb.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -75,15 +75,9 @@
     </Compile>
     <Compile Include="Framework\Bootstrapper.cs" />
     <Compile Include="Framework\HostWindowFactory.cs" />
-    <Compile Include="Framework\ConnectionStrings.cs" />
     <Compile Include="Framework\INavigator.cs" />
     <Compile Include="Framework\Navigator.cs" />
     <Compile Include="Framework\IWindow.cs" />
-    <Compile Include="Models\CommentSummary.cs" />
-    <Compile Include="Models\KnownResult.cs" />
-    <Compile Include="Models\PostSummary.cs" />
-    <Compile Include="Services\DbService.cs" />
-    <Compile Include="Services\IDbService.cs" />
     <Compile Include="ViewModels\DetailedPostViewModel.cs" />
     <Compile Include="ViewModels\ErrorViewModel.cs" />
     <Compile Include="ViewModels\IntroViewModel.cs" />
@@ -184,6 +178,14 @@
     <ProjectReference Include="..\Org.Feeder.Messages\Org.Feeder.Common.csproj">
       <Project>{540fee80-e7dd-45f0-b4e1-7f8340693bd3}</Project>
       <Name>Org.Feeder.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Org.Feeder.Models\Org.Feeder.Models.csproj">
+      <Project>{ba334885-6acb-4e78-808d-706eb1e3c6c5}</Project>
+      <Name>Org.Feeder.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Org.Feeder.Services\Org.Feeder.Services.csproj">
+      <Project>{5fc9c14f-814a-49d3-bf6e-36e79fa82a5a}</Project>
+      <Name>Org.Feeder.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

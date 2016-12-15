@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Org.Feeder.App.Framework;
-using Org.Feeder.App.Models;
-using Org.Feeder.App.Services;
+using Org.Feeder.Models;
+using Org.Feeder.Services;
 using System;
 using System.Threading.Tasks;
 using Org.Feeder.Common;

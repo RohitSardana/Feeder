@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Org.Feeder.App.Models;
+using Org.Feeder.Models;
 using Org.Feeder.App.ViewModels;
 using System.Threading;
 using Org.Feeder.App.Framework;
-using Org.Feeder.App.Services;
+using Org.Feeder.Services;
 using Rhino.Mocks;
 using System;
 

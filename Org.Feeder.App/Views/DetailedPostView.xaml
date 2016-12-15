@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Org.Feeder.App.Views"
-              xmlns:types="clr-namespace:Org.Feeder.App.Models"
+              xmlns:types="clr-namespace:Org.Feeder.Models;assembly=Org.Feeder.Models"
              xmlns:vm="clr-namespace:Org.Feeder.App.ViewModels"
               xmlns:customControls="clr-namespace:Org.Feeder.App.CustomControls"
              mc:Ignorable="d" >

@@ -1,4 +1,4 @@
-﻿namespace Org.Feeder.App.Models
+﻿namespace Org.Feeder.Models
 {
     public struct PostSummary
     {

@@ -1,4 +1,4 @@
-﻿using Org.Feeder.App.Services;
+﻿using Org.Feeder.Services;
 
 namespace Org.Feeder.App.Framework
 {

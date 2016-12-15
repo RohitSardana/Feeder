@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Org.Feeder.App.Models;
+using Org.Feeder.Models;
 using System;
 
 namespace Org.Feeder.Tests.Models

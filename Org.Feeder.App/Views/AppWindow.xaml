@@ -8,11 +8,12 @@
         Title="Feeder - Great content on your desktop." 
         WindowStartupLocation="CenterScreen"
         WindowState="Normal"
-        WindowStyle="ToolWindow"
+        WindowStyle="SingleBorderWindow"
         Height="700" MinHeight="500"
         Width="480" MinWidth="440"
         d:DataContext="{d:DesignInstance viewModels:AppShellViewModel}"
         Background="{StaticResource App.Background.Brush}"
+        Icon="{StaticResource App.Icon}"
         >
     <Grid>
 
