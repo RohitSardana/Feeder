@@ -125,7 +125,7 @@ namespace Org.Feeder.App.ViewModels
                     }
                     if (errorsList != null && errorsList.Count > 0)
                     {
-                        ShowErrorMessage(String.Join(String.Format("{0}", System.Environment.NewLine), errorsList), "Retry");
+                        _navigator.ShowError("Error", String.Join(String.Format("{0}", System.Environment.NewLine), errorsList), () => _navigator.GoToMain(), "Retry");
                     }
                     IsBusy = false;
                 });
@@ -133,7 +133,7 @@ namespace Org.Feeder.App.ViewModels
             catch (Exception ex)
             {
                 IsBusy = false;
-                ShowErrorMessage(ex.Message, "Retry");
+                _navigator.ShowError("Error", ex.Message, () => _navigator.GoToMain(), "Retry");
             }
             return posts;
         }
@@ -150,7 +150,7 @@ namespace Org.Feeder.App.ViewModels
             }
             catch (Exception ex)
             {
-                ShowErrorMessage(String.Format("Could not filter the post due to {0}.", ex.Message), "Reload UI");
+                _navigator.ShowError("Error", String.Format("Could not filter the post due to {0}.", ex.Message), () => _navigator.GoToMain(), "Reload UI");
             }
         }
 
@@ -162,13 +162,8 @@ namespace Org.Feeder.App.ViewModels
             }
             catch (Exception ex)
             {
-                ShowErrorMessage(String.Format("Could not navigate to detailed post UI due to {0}", ex.Message), "Reload UI");
+                _navigator.ShowError("Error", String.Format("Could not navigate to detailed post UI due to {0}", ex.Message), () => _navigator.GoToMain(), "Reload UI");
             }
-        }
-
-        private void ShowErrorMessage(string errorMessage, string actionTitle)
-        {
-            _navigator.ShowError("Error", errorMessage, () => _navigator.GoToMain(), actionTitle);
         }
     }
 }

@@ -242,12 +242,12 @@ namespace Org.Feeder.App.ViewModels
                 }
                 else
                 {
-                    ShowErrorMessage(String.Join(String.Format("{0}", System.Environment.NewLine), errors.Distinct()), "Go Back");
+                    _navigator.ShowError("Error", String.Join(String.Format("{0}", System.Environment.NewLine), errors.Distinct()), () => GoBack(), "Go Back");
                 }
             }
             catch (Exception ex)
             {
-                ShowErrorMessage(ex.Message, "Go Back");
+                _navigator.ShowError("Error", String.Format("Could not populate detailed post information in UI due to {0}", ex.Message), () => GoBack(), "Go Back");
             }
             finally
             {
@@ -268,13 +268,8 @@ namespace Org.Feeder.App.ViewModels
             }
             catch (Exception ex)
             {
-                ShowErrorMessage(String.Format("Could not navigate to Post Summary UI due to {0}", ex.Message), "Retry");
+                _navigator.ShowError("Error", String.Format("Could not navigate to Post Summary UI due to {0}", ex.Message), () => GoBack(), "Retry");
             }
-        }
-
-        private void ShowErrorMessage(string errorMessage, string actionTitle)
-        {
-            _navigator.ShowError("Error", errorMessage, () => GoBack(), actionTitle);
         }
     }
 }
