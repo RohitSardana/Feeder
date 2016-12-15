@@ -180,7 +180,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Org.Feeder.Messages\Org.Feeder.Common.csproj">
+      <Project>{540fee80-e7dd-45f0-b4e1-7f8340693bd3}</Project>
+      <Name>Org.Feeder.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\background.jpeg" />
   </ItemGroup>

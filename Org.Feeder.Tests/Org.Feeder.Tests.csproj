@@ -78,6 +78,10 @@
       <Project>{296399e8-2f45-4740-983e-74feb3e89fe8}</Project>
       <Name>Org.Feeder.App</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Org.Feeder.Messages\Org.Feeder.Common.csproj">
+      <Project>{540fee80-e7dd-45f0-b4e1-7f8340693bd3}</Project>
+      <Name>Org.Feeder.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

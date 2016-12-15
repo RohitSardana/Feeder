@@ -24,6 +24,7 @@
 **************************************************************************************************/
 using Org.Feeder.App.Framework;
 using Org.Feeder.App.Models;
+using Org.Feeder.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,6 +63,7 @@ namespace Org.Feeder.App.Services
             }
             catch (Exception ex)
             {
+                postSummaries = null;
                 error = ex.Message;
             }
             finally
@@ -80,7 +82,7 @@ namespace Org.Feeder.App.Services
         public KnownResult<IList<CommentSummary>> GetCommentSummaryByPostId(int postId)
         {
             KnownResult<IList<CommentSummary>> commentsResult = new KnownResult<IList<CommentSummary>>();
-            IList<CommentSummary> comments = new List<CommentSummary>();
+            IList<CommentSummary> comments = null;
             String error = String.Empty;
             try
             {
@@ -88,6 +90,7 @@ namespace Org.Feeder.App.Services
             }
             catch (Exception ex)
             {
+                comments = null;
                 error = ex.Message;
             }
             finally
@@ -125,17 +128,18 @@ namespace Org.Feeder.App.Services
                     user = _users.Where(u => u.UserId == userId).FirstOrDefault();
                     if (user == null)
                     {
-                        error = String.Format("User with user id {0} does not exists.", userId);
+                        error = String.Format("{0}: {1}",Messages.UserDoesNotExists, userId);
                     }
                 }
                 else
                 {
-                    error = "Oops! Could not fetch users from database.";
+                    error = String.Format("{0}.",Messages.CouldNotFetchUserDetails);
                 }
             }
             catch (Exception ex)
             {
-                error = String.Format("Oops! Could not fetch users from database due to {0}", ex.Message);
+                user = null;
+                error = String.Format("{0}: {1}", Messages.CouldNotFetchUserDetails, ex.Message);
             }
             finally
             {
@@ -161,6 +165,7 @@ namespace Org.Feeder.App.Services
             }
             catch (Exception ex)
             {
+                post = null;
                 error = ex.Message;
             }
             finally
@@ -182,6 +187,7 @@ namespace Org.Feeder.App.Services
             }
             catch (Exception ex)
             {
+                users = null;
                 error = ex.Message;
             }
             finally

@@ -5,6 +5,7 @@ using Org.Feeder.App.Models;
 using Org.Feeder.App.Services;
 using System;
 using System.Threading.Tasks;
+using Org.Feeder.Common;
 
 namespace Org.Feeder.App.ViewModels
 {
@@ -18,7 +19,6 @@ namespace Org.Feeder.App.ViewModels
         private List<Models.PostSummary> _posts;
         private List<Models.PostSummary> _initialPosts;
         public event Action OnInitialized;
-        private const string technialError = "Oops! Unknown technical error occured.";
         private bool _isBusy = false;
 
         /// <summary>
@@ -98,14 +98,14 @@ namespace Org.Feeder.App.ViewModels
                         var postSummariesResult = t.Result;
                         if (postSummariesResult == null)
                         {
-                            errorsList.Add(technialError);
+                            errorsList.Add(Messages.TechnicalError);
                         }
                         else if (postSummariesResult.HasError || postSummariesResult.Data == null)
                         {
                             string errorMessage = String.Empty;
                             if (String.IsNullOrWhiteSpace(postSummariesResult.ErrorMessage))
                             {
-                                errorMessage = technialError;
+                                errorMessage = Messages.TechnicalError;
                             }
                             else
                             {
@@ -125,7 +125,7 @@ namespace Org.Feeder.App.ViewModels
                     }
                     if (errorsList != null && errorsList.Count > 0)
                     {
-                        _navigator.ShowError("Error", String.Join(String.Format("{0}", System.Environment.NewLine), errorsList), () => _navigator.GoToMain(), "Retry");
+                        _navigator.ShowError(Messages.Error, String.Join(String.Format("{0}", System.Environment.NewLine), errorsList), () => _navigator.GoToMain(), Messages.Retry);
                     }
                     IsBusy = false;
                 });
@@ -133,7 +133,7 @@ namespace Org.Feeder.App.ViewModels
             catch (Exception ex)
             {
                 IsBusy = false;
-                _navigator.ShowError("Error", ex.Message, () => _navigator.GoToMain(), "Retry");
+                _navigator.ShowError(Messages.Error, ex.Message, () => _navigator.GoToMain(), Messages.Retry);
             }
             return posts;
         }
@@ -150,7 +150,7 @@ namespace Org.Feeder.App.ViewModels
             }
             catch (Exception ex)
             {
-                _navigator.ShowError("Error", String.Format("Could not filter the post due to {0}.", ex.Message), () => _navigator.GoToMain(), "Reload UI");
+                _navigator.ShowError(Messages.Error, String.Format("{0} {1}.", Messages.MainView_CouldNotFilterThePost, ex.Message), () => _navigator.GoToMain(), Messages.ReloadUI);
             }
         }
 
@@ -162,7 +162,7 @@ namespace Org.Feeder.App.ViewModels
             }
             catch (Exception ex)
             {
-                _navigator.ShowError("Error", String.Format("Could not navigate to detailed post UI due to {0}", ex.Message), () => _navigator.GoToMain(), "Reload UI");
+                _navigator.ShowError(Messages.Error, String.Format("{0} {1}", Messages.Navigate_CouldNotNavigateToDetaiedPostScreen, ex.Message), () => _navigator.GoToMain(), Messages.ReloadUI);
             }
         }
     }

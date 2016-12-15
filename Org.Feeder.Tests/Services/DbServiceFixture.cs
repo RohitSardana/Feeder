@@ -27,6 +27,7 @@ namespace Org.Feeder.Tests.Services
             }
             else if (postSummariesResult.HasError)
             {
+                Assert.IsNull(postSummariesResult.Data);
                 Assert.IsFalse(String.IsNullOrWhiteSpace(postSummariesResult.ErrorMessage));
             }
         }
@@ -54,11 +55,13 @@ namespace Org.Feeder.Tests.Services
                 }
                 else if (postResult.HasError)
                 {
+                    Assert.IsNull(postResult.Data);
                     Assert.IsFalse(String.IsNullOrWhiteSpace(postResult.ErrorMessage));
                 }
             }
             else if (postSummariesResult.HasError)
             {
+                Assert.IsNull(postSummariesResult.Data);
                 Assert.IsFalse(String.IsNullOrWhiteSpace(postSummariesResult.ErrorMessage));
             }
         }
@@ -81,6 +84,7 @@ namespace Org.Feeder.Tests.Services
                 KnownResult<FeederDb.Post> postResult = dbService.GetPostById(postSummary.PostId);
                 if (postResult.HasError)
                 {
+                    Assert.IsNull(postResult.Data);
                     Assert.IsFalse(String.IsNullOrWhiteSpace(postResult.ErrorMessage));
                 }
                 else if (postResult.HasError == false)
@@ -91,6 +95,7 @@ namespace Org.Feeder.Tests.Services
                     KnownResult<FeederDb.User> userResult = dbService.GetUserById(postResult.Data.UserId);
                     if (userResult.HasError)
                     {
+                        Assert.IsNotNull(userResult.Data);
                         Assert.IsFalse(String.IsNullOrWhiteSpace(userResult.ErrorMessage));
                     }
                     else
@@ -99,10 +104,10 @@ namespace Org.Feeder.Tests.Services
                         Assert.IsTrue(String.IsNullOrWhiteSpace(userResult.ErrorMessage));
                     }
                 }
-
             }
             else if (postSummariesResult.HasError)
             {
+                Assert.IsNull(postSummariesResult.Data);
                 Assert.IsFalse(String.IsNullOrWhiteSpace(postSummariesResult.ErrorMessage));
             }
         }
@@ -125,6 +130,7 @@ namespace Org.Feeder.Tests.Services
                 KnownResult<IList<CommentSummary>> commentsResult = dbService.GetCommentSummaryByPostId(postSummary.PostId);
                 if (commentsResult.HasError)
                 {
+                    Assert.IsNull(commentsResult.Data);
                     Assert.IsFalse(String.IsNullOrWhiteSpace(commentsResult.ErrorMessage));
                 }
                 else if (commentsResult.HasError == false)
@@ -136,6 +142,7 @@ namespace Org.Feeder.Tests.Services
             }
             else if (postSummariesResult.HasError)
             {
+                Assert.IsNull(postSummariesResult.Data);
                 Assert.IsFalse(String.IsNullOrWhiteSpace(postSummariesResult.ErrorMessage));
             }
         }

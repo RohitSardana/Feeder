@@ -30,6 +30,7 @@ using Org.Feeder.App.Models;
 using System.Threading.Tasks;
 using System;
 using Org.Feeder.App.Services;
+using Org.Feeder.Common;
 
 namespace Org.Feeder.App.ViewModels
 {
@@ -156,9 +157,9 @@ namespace Org.Feeder.App.ViewModels
                 bool isPostInfoAvailable = false;
                 bool isUserInfoAvailable = false;
                 bool areCommentsAvailable = false;
-                string title = "Not available.";
-                string body = "Not available.";
-                string author = "Not available.";
+                string title = Messages.NotAvailable;
+                string body = Messages.NotAvailable;
+                string author = Messages.NotAvailable;
                 string imageUrl = String.Empty;
                 List<CommentSummary> comments = new List<CommentSummary>();
                 Parallel.Invoke(
@@ -167,7 +168,7 @@ namespace Org.Feeder.App.ViewModels
                         KnownResult<FeederDb.Post> postResult = _dbService.GetPostById(_postId);
                         if (postResult == null)
                         {
-                            errors.Add("Could not fetch post details.");
+                            errors.Add(Messages.CouldNotFetchPostDetails);
                         }
                         else if (postResult.HasError)
                         {
@@ -182,7 +183,7 @@ namespace Org.Feeder.App.ViewModels
                             KnownResult<FeederDb.User> userResult = _dbService.GetUserById(post.UserId);
                             if (userResult == null)
                             {
-                                errors.Add("Could not fetch user details.");
+                                errors.Add(Messages.CouldNotFetchUserDetails);
                             }
                             else if (userResult.HasError)
                             {
@@ -202,7 +203,7 @@ namespace Org.Feeder.App.ViewModels
                         KnownResult<IList<CommentSummary>> commentsResult = _dbService.GetCommentSummaryByPostId(_postId);
                         if (commentsResult == null)
                         {
-                            errors.Add("Could not fetch comments of the post.");
+                            errors.Add(Messages.CouldNotFetchComments);
                         }
                         else if (commentsResult.HasError)
                         {
@@ -210,8 +211,15 @@ namespace Org.Feeder.App.ViewModels
                         }
                         else
                         {
-                            areCommentsAvailable = true;
-                            comments = commentsResult.Data.ToList();
+                            if (commentsResult.Data != null)
+                            {
+                                areCommentsAvailable = true;
+                                comments = commentsResult.Data.ToList();
+                            }
+                            else
+                            {
+                                comments = null;
+                            }
                         }
                     }
                     );
@@ -230,24 +238,29 @@ namespace Org.Feeder.App.ViewModels
                         Author = author;
                         ImageUrl = imageUrl;
                     }
+                    else
+                    {
+                        Author = Messages.NotAvailable;
+                        ImageUrl = Messages.NotAvailable;
+                    }
                     if (areCommentsAvailable)
                     {
-                        CommentHeaderText = "Comments";
+                        CommentHeaderText = Messages.CommentsHeaderText;
                         Comments = comments;
                     }
                     else
                     {
-                        CommentHeaderText = "Comments not available";
+                        CommentHeaderText = Messages.CommentsNotAvailable;
                     }
                 }
                 else
                 {
-                    _navigator.ShowError("Error", String.Join(String.Format("{0}", System.Environment.NewLine), errors.Distinct()), () => GoBack(), "Go Back");
+                    _navigator.ShowError(Messages.Error, String.Join(String.Format("{0}", System.Environment.NewLine), errors.Distinct()), () => GoBack(), Messages.GoBack);
                 }
             }
             catch (Exception ex)
             {
-                _navigator.ShowError("Error", String.Format("Could not populate detailed post information in UI due to {0}", ex.Message), () => GoBack(), "Go Back");
+                _navigator.ShowError(Messages.Error, ex.Message, () => GoBack(), Messages.GoBack);
             }
             finally
             {
@@ -268,7 +281,7 @@ namespace Org.Feeder.App.ViewModels
             }
             catch (Exception ex)
             {
-                _navigator.ShowError("Error", String.Format("Could not navigate to Post Summary UI due to {0}", ex.Message), () => GoBack(), "Retry");
+                _navigator.ShowError(Messages.Error, String.Format("{0} {1}",Messages.Navigate_CouldNotNavigateToMainScreen, ex.Message), () => GoBack(), Messages.Retry);
             }
         }
     }
