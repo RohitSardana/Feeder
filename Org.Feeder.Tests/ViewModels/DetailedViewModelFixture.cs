@@ -110,6 +110,36 @@ namespace Org.Feeder.Tests.ViewModels
         }
 
         [TestMethod]
+        public void DisplayingDetailedPost_OperationUnderProcessing()
+        {
+            //Arrange
+            int postId = 1;
+            int operationTimeInMilliseconds = 5000;
+            int waitTimeInMilliseconds = 8000;
+            int breathingTimeForCtor = 2000;
+
+            #region Simulating dbService to return the predefined data.
+
+            KnownResult<FeederDb.Post> postResult = new KnownResult<FeederDb.Post>();
+            postResult.Data = new FeederDb.Post(postId, 1, "Post1", "Post content");
+            postResult.ErrorMessage = Messages.CouldNotFetchPostDetails;
+            _dbService.Stub(x => x.GetPostById(postId)).WhenCalled(x=>Thread.Sleep(operationTimeInMilliseconds)).Return(postResult);
+
+            #endregion
+
+            //Act
+            _viewModel = new DetailedPostViewModel(_navigator, _dbService, postId);
+            _viewModel.OnInitialized += _viewModel_OnInitialized;
+            Thread.Sleep(breathingTimeForCtor);//wait for 2 seconds so that DetailedPostViewModel ctor gets enough time to set IsBusy property to true.
+            Assert.IsTrue(_viewModel.IsBusy);
+            // wait either for 6 seconds or for viewModel data to be initialized, whichever occurs first.
+            _waitingEvent.WaitOne(waitTimeInMilliseconds);
+
+            //Assert
+            Assert.IsFalse(_viewModel.IsBusy);
+        }
+
+        [TestMethod]
         public void DisplayingDetailedPost_UserFetchFailed()
         {
             //Arrange
