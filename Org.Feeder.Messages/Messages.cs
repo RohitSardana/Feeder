@@ -33,7 +33,7 @@ namespace Org.Feeder.Common
         public const string MainView_CouldNotFilterThePost = "Could not filter posts due to";
 
         public const string Navigate_CouldNotNavigateToMainScreen = "Could not navigate to Main screen due to";
-        public const string Navigate_CouldNotNavigateToDetaiedPostScreen = "Could not navigate to detailed post screen due to";
+        public const string Navigate_CouldNotNavigateToDetailedPostScreen = "Could not navigate to detailed post screen due to";
 
         public const string CouldNotFetchPostDetails = "Could not fetch post details";
         public const string CouldNotFetchUserDetails = "Could not fetch user details";

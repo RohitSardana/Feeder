@@ -1,11 +1,10 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Org.Feeder.Services;
 using Org.Feeder.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Org.Feeder.Tests.Services
+namespace Org.Feeder.Services.Tests
 {
     [TestClass]
     public class DbServiceFixture

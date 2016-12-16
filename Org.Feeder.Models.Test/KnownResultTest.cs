@@ -1,8 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Org.Feeder.Models;
 using System;
 
-namespace Org.Feeder.Tests.Models
+namespace Org.Feeder.Models.Test
 {
     [TestClass]
     public class KnownResultTest

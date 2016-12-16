@@ -162,7 +162,7 @@ namespace Org.Feeder.App.ViewModels
             }
             catch (Exception ex)
             {
-                _navigator.ShowError(Messages.Error, String.Format("{0} {1}", Messages.Navigate_CouldNotNavigateToDetaiedPostScreen, ex.Message), () => _navigator.GoToMain(), Messages.ReloadUI);
+                _navigator.ShowError(Messages.Error, String.Format("{0} {1}", Messages.Navigate_CouldNotNavigateToDetailedPostScreen, ex.Message), () => _navigator.GoToMain(), Messages.ReloadUI);
             }
         }
     }

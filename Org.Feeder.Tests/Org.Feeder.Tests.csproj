@@ -66,9 +66,7 @@
   <ItemGroup>
     <Compile Include="Framework\BootstrapperFixture.cs" />
     <Compile Include="Framework\NavigatorFixture.cs" />
-    <Compile Include="Models\KnownResultTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\DbServiceFixture.cs" />
     <Compile Include="ViewModels\DetailedViewModelFixture.cs" />
     <Compile Include="ViewModels\IntroViewModelFixture.cs" />
     <Compile Include="ViewModels\MainViewModelFixture.cs" />
