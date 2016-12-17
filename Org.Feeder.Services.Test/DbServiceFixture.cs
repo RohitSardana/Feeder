@@ -94,7 +94,7 @@ namespace Org.Feeder.Services.Tests
                     KnownResult<FeederDb.User> userResult = dbService.GetUserById(postResult.Data.UserId);
                     if (userResult.HasError)
                     {
-                        Assert.IsNotNull(userResult.Data);
+                        Assert.IsNull(userResult.Data);
                         Assert.IsFalse(String.IsNullOrWhiteSpace(userResult.ErrorMessage));
                     }
                     else

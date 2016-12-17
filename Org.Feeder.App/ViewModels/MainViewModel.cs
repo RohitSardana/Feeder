@@ -117,10 +117,6 @@ namespace Org.Feeder.App.ViewModels
                         {
                             _initialPosts = postSummariesResult.Data.ToList();
                             Posts = _initialPosts.ToList();
-                            if (OnInitialized != null)
-                            {
-                                OnInitialized.BeginInvoke(null, null);
-                            }
                         }
                     }
                     if (errorsList != null && errorsList.Count > 0)
@@ -128,6 +124,10 @@ namespace Org.Feeder.App.ViewModels
                         _navigator.ShowError(Messages.Error, String.Join(String.Format("{0}", System.Environment.NewLine), errorsList), () => _navigator.GoToMain(), Messages.Retry);
                     }
                     IsBusy = false;
+                    if (OnInitialized != null)
+                    {
+                        OnInitialized.BeginInvoke(null, null);
+                    }
                 });
             }
             catch (Exception ex)
