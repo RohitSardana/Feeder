@@ -145,5 +145,44 @@ namespace Org.Feeder.Services.Tests
                 Assert.IsFalse(String.IsNullOrWhiteSpace(postSummariesResult.ErrorMessage));
             }
         }
+
+        /*Iterating through GettingUsers multiple times, 
+        may increase the chances of getting timeout errors from feederDb, 
+        thus increasing code coverage*/
+        [TestMethod]
+        public void GettingUser_MultipleTimes()
+        {
+            for (int count = 0; count <= 10; count++)
+            {
+                GettingUser();
+            }
+        }
+
+        [TestMethod]
+        public void GettingPost_MultipleTimes()
+        {
+            for (int count = 0; count <= 10; count++)
+            {
+                GettingPost();
+            }
+        }
+
+        [TestMethod]
+        public void GettingPostSummaries_MultipleTimes()
+        {
+            for (int count = 0; count <= 10; count++)
+            {
+                GettingPostSummaries();
+            }
+        }
+
+        [TestMethod]
+        public void GettingComments_MultipleTimes()
+        {
+            for (int count = 0; count <= 10; count++)
+            {
+                GettingComments();
+            }
+        }
     }
 }
