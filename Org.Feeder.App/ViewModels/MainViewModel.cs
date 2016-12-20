@@ -10,7 +10,7 @@ using Org.Feeder.Common;
 namespace Org.Feeder.App.ViewModels
 {
     /// <summary>
-    /// A class to store data related to Main screen.
+    /// Represents view model for Main screen
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
@@ -18,15 +18,18 @@ namespace Org.Feeder.App.ViewModels
         private readonly IDbService _dbService;
         private List<Models.PostSummary> _posts;
         private List<Models.PostSummary> _initialPosts;
-        public event Action OnInitialized;
         private bool _isBusy = false;
 
         /// <summary>
-        /// Initializes the data related to Main screen.
-        /// It also fetches the posts from database.
+        /// Occurs when MainViewModel object initialized with posts summaries
         /// </summary>
-        /// <param name="navigator"></param>
-        /// <param name="dbService"></param>
+        public event Action OnInitialized;
+
+        /// <summary>
+        /// Initializes with navigator, dbservice and posts
+        /// </summary>
+        /// <param name="navigator">The navigator</param>
+        /// <param name="dbService">The DbService</param>
         public MainViewModel(INavigator navigator, IDbService dbService)
         {
             _navigator = navigator;
@@ -117,6 +120,10 @@ namespace Org.Feeder.App.ViewModels
                         {
                             _initialPosts = postSummariesResult.Data.ToList();
                             Posts = _initialPosts.ToList();
+                            if (OnInitialized != null)
+                            {
+                                OnInitialized.BeginInvoke(null, null);
+                            }
                         }
                     }
                     if (errorsList != null && errorsList.Count > 0)
@@ -124,10 +131,6 @@ namespace Org.Feeder.App.ViewModels
                         _navigator.ShowError(Messages.Error, String.Join(String.Format("{0}", System.Environment.NewLine), errorsList), () => _navigator.GoToMain(), Messages.Retry);
                     }
                     IsBusy = false;
-                    if (OnInitialized != null)
-                    {
-                        OnInitialized.BeginInvoke(null, null);
-                    }
                 });
             }
             catch (Exception ex)

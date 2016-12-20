@@ -2,6 +2,9 @@
 
 namespace Org.Feeder.App.Framework
 {
+    /// <summary>
+    /// Initializes the application built using the Composite Application Library.
+    /// </summary>
     public class Bootstrapper
     {
         private readonly HostWindowFactory _hostWindowFactory;
@@ -10,11 +13,19 @@ namespace Org.Feeder.App.Framework
         private Navigator _navigator;
         private IDbService _dbService;
 
+        /// <summary>
+        /// Initalizes the bootstrapper with HostWindowFactory
+        /// </summary>
+        /// <param name="hostWindowFactory"></param>
         public Bootstrapper(HostWindowFactory hostWindowFactory)
         {
             _hostWindowFactory = hostWindowFactory;
         }
 
+        /// <summary>
+        /// Initializes the application with host window
+        /// </summary>
+        /// <param name="appViewModel"></param>
         public void Initialize(IContentHostViewModel appViewModel)
         {
             _dbService = new DbService();

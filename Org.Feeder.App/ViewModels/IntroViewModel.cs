@@ -3,16 +3,16 @@
 namespace Org.Feeder.App.ViewModels
 {
     /// <summary>
-    /// Introduction view model of the application
+    /// Represents view model for the Introduction screen
     /// </summary>
     public class IntroViewModel : ViewModelBase
     {
         private readonly INavigator _navigator;
 
         /// <summary>
-        /// Initializes the IntroViewModel.
+        /// Initializes the IntroViewModel with navigator and start command
         /// </summary>
-        /// <param name="navigator"></param>
+        /// <param name="navigator">The navigator</param>
         public IntroViewModel(INavigator navigator)
         {
             _navigator = navigator;

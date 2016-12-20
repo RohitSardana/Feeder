@@ -1,5 +1,8 @@
 ﻿namespace Org.Feeder.Services
 {
+    /// <summary>
+    /// Represents database connection strings
+    /// </summary>
     internal static class ConnectionStrings
     {
         /// <summary>

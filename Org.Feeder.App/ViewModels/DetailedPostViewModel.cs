@@ -34,13 +34,15 @@ using Org.Feeder.Common;
 
 namespace Org.Feeder.App.ViewModels
 {
+    /// <summary>
+    /// Represents view model for Detailed Post UI
+    /// </summary>
     public class DetailedPostViewModel : ViewModelBase
     {
         private readonly INavigator _navigator;
         private readonly IDbService _dbService;
         private readonly int _postId;
         private bool _isBusy = false;
-        public event Action OnInitialized;
         private string _title = String.Empty;
         private string _body = String.Empty;
         private string _author = String.Empty;
@@ -49,7 +51,12 @@ namespace Org.Feeder.App.ViewModels
         private List<CommentSummary> _comments = new List<CommentSummary>();
 
         /// <summary>
-        /// Initializes the view model about post's detailed information
+        /// Occurs when DetailedPostViewModel object is initialized with post detailed information
+        /// </summary>
+        public event Action OnInitialized;
+
+        /// <summary>
+        /// Initializes the view model with post's detailed information
         /// </summary>
         /// <param name="navigator"></param>
         /// <param name="dbService"></param>

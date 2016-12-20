@@ -2,12 +2,15 @@
 
 namespace Org.Feeder.App.ViewModels
 {
+    /// <summary>
+    /// Represents appliation shell to host any view model of type <see cref="Org.Feeder.App.ViewModels.IViewModel"/>
+    /// </summary>
     public class AppShellViewModel : ViewModelBase, IContentHostViewModel
     {
         private IViewModel _content;
 
         /// <summary>
-        /// Current ViewModel displayed on the application
+        /// Gets or sets the current ViewModel displayed on the application
         /// </summary>
         public IViewModel Content
         {

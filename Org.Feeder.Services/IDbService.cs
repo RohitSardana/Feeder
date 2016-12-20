@@ -27,9 +27,8 @@ using System.Collections.Generic;
 
 namespace Org.Feeder.Services
 {
-
     /// <summary>
-    /// Declars the method to fetch records from database.
+    /// Represents methods to fetch records from database.
     /// </summary>
     public interface IDbService
     {

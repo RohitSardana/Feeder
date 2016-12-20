@@ -26,15 +26,15 @@
 namespace Org.Feeder.Models
 {
     /// <summary>
-    /// Class represents the comment summary.
+    /// Represents the comment summary such as omment and its commenter.
     /// </summary>
     public class CommentSummary
     {
         /// <summary>
         /// Initializes the comment summary
         /// </summary>
-        /// <param name="commenterName"></param>
-        /// <param name="text"></param>
+        /// <param name="commenterName">The commenter name</param>
+        /// <param name="text">Comment</param>
         public CommentSummary(string commenterName, string text)
         {
             CommenterName = commenterName;

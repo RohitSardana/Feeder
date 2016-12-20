@@ -31,7 +31,7 @@ using System.Linq;
 namespace Org.Feeder.Services
 {
     /// <summary>
-    /// A service to fetch the records from database.
+    /// Implements <see cref="Org.Feeder.Services.IDbService"/> to provide methods to fetch the records from database.
     /// </summary>
     public class DbService : IDbService
     {
@@ -49,7 +49,7 @@ namespace Org.Feeder.Services
         /// <summary>
         /// Gets all posts summary from database.
         /// </summary>
-        /// <returns></returns>
+        /// <returns><see cref="Org.Feeder.Models.KnownResult{T}"/> Where T is IEnumerable of <see cref="Org.Feeder.Models.PostSummary"/></returns>
         public KnownResult<IEnumerable<PostSummary>> GetPostSummaries()
         {
             KnownResult<IEnumerable<PostSummary>> postSummariesResult = new KnownResult<IEnumerable<PostSummary>>();
@@ -76,8 +76,8 @@ namespace Org.Feeder.Services
         /// <summary>
         /// Gets the comment summary by post id
         /// </summary>
-        /// <param name="postId"></param>
-        /// <returns></returns>
+        /// <param name="postId">The post id</param>
+        /// <returns><see cref="Org.Feeder.Models.KnownResult{T}"/> Where T is IList of <see cref="Org.Feeder.Models.CommentSummary"/></returns>
         public KnownResult<IList<CommentSummary>> GetCommentSummaryByPostId(int postId)
         {
             KnownResult<IList<CommentSummary>> commentsResult = new KnownResult<IList<CommentSummary>>();
@@ -103,8 +103,8 @@ namespace Org.Feeder.Services
         /// <summary>
         /// Gets the user by user id
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
+        /// <param name="userId">The user id</param>
+        /// <returns><see cref="Org.Feeder.Models.KnownResult{T}"/> Where T is List of <see cref="Org.Feeder.FeederDb.User"/></returns>
         public KnownResult<FeederDb.User> GetUserById(int userId)
         {
             KnownResult<FeederDb.User> userResult = new KnownResult<FeederDb.User>();
@@ -151,8 +151,8 @@ namespace Org.Feeder.Services
         /// <summary>
         /// Gets the post by post id
         /// </summary>
-        /// <param name="postId"></param>
-        /// <returns></returns>
+        /// <param name="postId">The post id</param>
+        /// <returns><see cref="Org.Feeder.Models.KnownResult{T}"/> Where T is of type <see cref="Org.Feeder.FeederDb.Post"/></returns>
         public KnownResult<FeederDb.Post> GetPostById(int postId)
         {
             KnownResult<FeederDb.Post> postResult = new KnownResult<FeederDb.Post>();

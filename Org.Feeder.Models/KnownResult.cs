@@ -27,9 +27,10 @@ using System;
 namespace Org.Feeder.Models
 {
     /// <summary>
-    /// This class can be used to wrap the object to be returned from the method.
+    /// Represents the generic data and error message
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <remarks>Methods can use this class to wrap their return values and associated error message (if any)</remarks>
+    /// <typeparam name="T">Any data type</typeparam>
     public class KnownResult<T>
     {
         #region Properties
